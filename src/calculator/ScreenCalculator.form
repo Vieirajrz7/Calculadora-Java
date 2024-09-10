@@ -177,6 +177,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="MC"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonMemoryClearActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="butttonMSum">
       <Properties>
@@ -191,6 +194,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="M+"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butttonMSumActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonMLess">
       <Properties>
@@ -205,6 +211,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="M-"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonMLessActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonMR">
       <Properties>
@@ -219,6 +228,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="MR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonMRActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonClear">
       <Properties>
@@ -247,6 +259,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="+/-"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonMoreLessActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="buttonDiv">
       <Properties>

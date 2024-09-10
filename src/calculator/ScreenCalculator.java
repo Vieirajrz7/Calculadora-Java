@@ -4,25 +4,50 @@
  */
 package calculator;
 
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Font;
+import java.util.List;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 23012
  */
 public class ScreenCalculator extends javax.swing.JFrame {
 
-    
     double firstNumber = 0;
     double secondNumber;
     double result;
     String operation;
-    
+    double memoryReturn;
+
     /**
      * Creates new form ScreenCalculator
      */
     public ScreenCalculator() {
         initComponents();
+        
+        List<JButton> buttons = getButtons(getContentPane());
+        for (JButton button : buttons)
+        
+        displayScreen.setFont(new Font("Arial", Font.PLAIN, 30));
     }
 
+    public List<JButton> getButtons(Container container) {
+        List<JButton> buttons = new ArrayList<>();
+        Component[] components = container.getComponents();
+        
+        for (Component component : components) {
+                if(component instanceof JButton) {
+                    buttons.add((JButton) component);
+            }
+        }
+     return buttons;
+    }
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,21 +95,41 @@ public class ScreenCalculator extends javax.swing.JFrame {
         buttonMemoryClear.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         buttonMemoryClear.setForeground(new java.awt.Color(255, 255, 255));
         buttonMemoryClear.setText("MC");
+        buttonMemoryClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMemoryClearActionPerformed(evt);
+            }
+        });
 
         butttonMSum.setBackground(new java.awt.Color(94, 92, 92));
         butttonMSum.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         butttonMSum.setForeground(new java.awt.Color(255, 255, 255));
         butttonMSum.setText("M+");
+        butttonMSum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                butttonMSumActionPerformed(evt);
+            }
+        });
 
         buttonMLess.setBackground(new java.awt.Color(94, 92, 92));
         buttonMLess.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         buttonMLess.setForeground(new java.awt.Color(255, 255, 255));
         buttonMLess.setText("M-");
+        buttonMLess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMLessActionPerformed(evt);
+            }
+        });
 
         buttonMR.setBackground(new java.awt.Color(94, 92, 92));
         buttonMR.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         buttonMR.setForeground(new java.awt.Color(255, 255, 255));
         buttonMR.setText("MR");
+        buttonMR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMRActionPerformed(evt);
+            }
+        });
 
         buttonClear.setBackground(new java.awt.Color(181, 176, 176));
         buttonClear.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -99,6 +144,11 @@ public class ScreenCalculator extends javax.swing.JFrame {
         buttonMoreLess.setBackground(new java.awt.Color(247, 150, 5));
         buttonMoreLess.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
         buttonMoreLess.setText("+/-");
+        buttonMoreLess.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonMoreLessActionPerformed(evt);
+            }
+        });
 
         buttonDiv.setBackground(new java.awt.Color(247, 150, 5));
         buttonDiv.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -452,84 +502,127 @@ public class ScreenCalculator extends javax.swing.JFrame {
 
     private void buttonSumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSumActionPerformed
         if (displayScreen.getText().equals("")) {
-                
+
         } else {
-        firstNumber = Double.parseDouble(displayScreen.getText());
-        System.out.println("rodou");
-        displayScreen.setText("");
-        operation = "+";
+            firstNumber = Double.parseDouble(displayScreen.getText());
+            System.out.println("rodou");
+            displayScreen.setText("");
+            operation = "+";
 
         }
-        
+
     }//GEN-LAST:event_buttonSumActionPerformed
 
     private void buttonLessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLessActionPerformed
         if (displayScreen.getText().equals("")) {
-            
-        }else {
-        firstNumber = Double.parseDouble(displayScreen.getText());
-        displayScreen.setText("");
-        operation = "-";
+
+        } else {
+            firstNumber = Double.parseDouble(displayScreen.getText());
+            displayScreen.setText("");
+            operation = "-";
 
         }
     }//GEN-LAST:event_buttonLessActionPerformed
 
     private void buttonMultiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMultiActionPerformed
         if (displayScreen.getText().equals("")) {
-            
-        }else {
-        firstNumber = Double.parseDouble(displayScreen.getText());
-        displayScreen.setText("");
-        operation = "*";
+
+        } else {
+            firstNumber = Double.parseDouble(displayScreen.getText());
+            displayScreen.setText("");
+            operation = "*";
         }
     }//GEN-LAST:event_buttonMultiActionPerformed
 
     private void buttonDivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDivActionPerformed
         if (displayScreen.getText().equals("")) {
         } else {
-        firstNumber = Double.parseDouble(displayScreen.getText());
-        displayScreen.setText("");
-        operation = "/";
+            firstNumber = Double.parseDouble(displayScreen.getText());
+            displayScreen.setText("");
+            operation = "/";
 
         }
     }//GEN-LAST:event_buttonDivActionPerformed
 
     private void buttonEqualsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEqualsActionPerformed
         if (operation != null) {
-            
-        String resultFormated;
-        secondNumber = Double.parseDouble(displayScreen.getText());
-        switch (operation) {
-            case "+":
-                result = firstNumber + secondNumber;
-                firstNumber = 0;
-                secondNumber = 0;
-                resultFormated = String.format("%.2f", result);
-                displayScreen.setText(resultFormated);
-                break;
-                
-            case "-":
-                result = firstNumber - secondNumber;
-                resultFormated = String.format("%.2f", result);
-                displayScreen.setText(resultFormated);
-                break;
-                
-            case "/":
-                result = firstNumber / secondNumber;
-                resultFormated = String.format("%.4f", result);
-                displayScreen.setText(resultFormated);
-                break;
-                
-            case "*":
-                result = firstNumber * secondNumber;
-                resultFormated = String.format("%.2f", result);
-                displayScreen.setText(resultFormated);
-                break;
-            default:
-                throw new AssertionError();
-        }
+
+            String resultFormated;
+            secondNumber = Double.parseDouble(displayScreen.getText());
+            switch (operation) {
+                case "+":
+                    result = firstNumber + secondNumber;
+                    firstNumber = 0;
+                    secondNumber = 0;
+                    resultFormated = String.format("%.2f", result);
+                    displayScreen.setText(resultFormated);
+                    memoryReturn = result;
+                    break;
+
+                case "-":
+                    result = firstNumber - secondNumber;
+                    resultFormated = String.format("%.2f", result);
+                    displayScreen.setText(resultFormated);
+                    memoryReturn = result;
+                    break;
+
+                case "/":
+                    if (secondNumber != 0) {
+                    result = firstNumber / secondNumber;
+                    resultFormated = String.format("%.4f", result);
+                    displayScreen.setText(resultFormated);
+                    break;
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Divisão por zero não é permitido");
+                    }
+                    
+
+                case "*":
+                    result = firstNumber * secondNumber;
+                    resultFormated = String.format("%.2f", result);
+                    displayScreen.setText(resultFormated);
+                    break;
+                default:
+                    throw new AssertionError();
+            }
         }
     }//GEN-LAST:event_buttonEqualsActionPerformed
+
+    private void buttonMRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMRActionPerformed
+        displayScreen.setText("" + memoryReturn);
+    }//GEN-LAST:event_buttonMRActionPerformed
+
+    private void buttonMoreLessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMoreLessActionPerformed
+        double resultFormated = Double.parseDouble(String.valueOf(displayScreen.getText()));
+        resultFormated = resultFormated * (-1);
+        displayScreen.setText(String.valueOf(resultFormated));
+    }//GEN-LAST:event_buttonMoreLessActionPerformed
+
+    private void buttonMemoryClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMemoryClearActionPerformed
+        memoryReturn = 0;
+        displayScreen.setText("");
+    }//GEN-LAST:event_buttonMemoryClearActionPerformed
+
+    private void butttonMSumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butttonMSumActionPerformed
+        double memoryResult;
+        String resultFormated;
+        double memoryMore = Double.parseDouble(displayScreen.getText());
+        memoryResult = memoryReturn + memoryMore;
+        resultFormated = String.format("%2.f", memoryResult);
+        displayScreen.setText(resultFormated);
+        memoryReturn = memoryResult;
+        
+    }//GEN-LAST:event_butttonMSumActionPerformed
+
+    private void buttonMLessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMLessActionPerformed
+        double memoryResult;
+        String resultFormated;
+        double memoryMore = Double.parseDouble(displayScreen.getText());
+        memoryResult = memoryReturn - memoryMore;
+        resultFormated = String.format("%2.f", memoryResult);
+        displayScreen.setText(resultFormated);
+        memoryReturn = memoryResult;
+    }//GEN-LAST:event_buttonMLessActionPerformed
 
     /**
      * @param args the command line arguments
