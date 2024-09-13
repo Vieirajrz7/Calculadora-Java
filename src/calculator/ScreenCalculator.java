@@ -505,7 +505,6 @@ public class ScreenCalculator extends javax.swing.JFrame {
 
         } else {
             firstNumber = Double.parseDouble(displayScreen.getText());
-            System.out.println("rodou");
             displayScreen.setText("");
             operation = "+";
 
@@ -571,6 +570,7 @@ public class ScreenCalculator extends javax.swing.JFrame {
                     result = firstNumber / secondNumber;
                     resultFormated = String.format("%.4f", result);
                     displayScreen.setText(resultFormated);
+                    memoryReturn = result;
                     break;
                     } else {
                         JOptionPane.showMessageDialog(this, "Divisão por zero não é permitido");
@@ -581,6 +581,7 @@ public class ScreenCalculator extends javax.swing.JFrame {
                     result = firstNumber * secondNumber;
                     resultFormated = String.format("%.2f", result);
                     displayScreen.setText(resultFormated);
+                    memoryReturn = result;
                     break;
                 default:
                     throw new AssertionError();
@@ -608,7 +609,7 @@ public class ScreenCalculator extends javax.swing.JFrame {
         String resultFormated;
         double memoryMore = Double.parseDouble(displayScreen.getText());
         memoryResult = memoryReturn + memoryMore;
-        resultFormated = String.format("%2.f", memoryResult);
+        resultFormated = String.format("%.2f", memoryResult);
         displayScreen.setText(resultFormated);
         memoryReturn = memoryResult;
         
@@ -619,7 +620,7 @@ public class ScreenCalculator extends javax.swing.JFrame {
         String resultFormated;
         double memoryMore = Double.parseDouble(displayScreen.getText());
         memoryResult = memoryReturn - memoryMore;
-        resultFormated = String.format("%2.f", memoryResult);
+        resultFormated = String.format("%.2f", memoryResult);
         displayScreen.setText(resultFormated);
         memoryReturn = memoryResult;
     }//GEN-LAST:event_buttonMLessActionPerformed
